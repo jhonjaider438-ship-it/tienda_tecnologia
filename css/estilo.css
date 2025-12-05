@@ -1,0 +1,666 @@
+/* REINICIO BÁSICO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+      'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: black;
+  /* 🔹 Este padding-top evita que el encabezado tape el contenido
+     pero sin crear un hueco visual */
+  padding-top: 110px; /* Ajusta según la altura del encabezado */
+}
+
+/* --- ENCABEZADO --- */
+.encabezado {
+  background-color: #0a0a23;
+  color: white;
+  padding: 30px 40px;
+  border-bottom: 4px solid #00bfff;
+  position: fixed;          /* 🔹 Se queda fijo al hacer scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Logo a la izquierda, menú a la derecha */
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* LOGO */
+.logo h1 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin: 0; /* 🔹 Elimina el margen que empujaba el header hacia abajo */
+}
+
+/* --- MENÚ --- */
+.encabezado ul {
+  list-style: none;            
+  display: flex;               
+  justify-content: flex-end;   
+  align-items: center;
+}
+
+.encabezado li {
+  margin-left: 25px;           
+}
+
+.encabezado a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* EFECTO HOVER */
+.encabezado a:hover {
+  color: #00bfff;
+}
+
+/* LÍNEA DEBAJO ANIMADA */
+.encabezado a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 3px;
+  background-color: #00bfff;
+  transition: width 0.3s;
+}
+
+.encabezado a:hover::after {
+  width: 100%;
+}
+
+/* 🔹 Ya no usamos margin-top aquí, para evitar el hueco entre header e inicio */
+/* main, section {
+  margin-top: 120px;
+} */
+
+/* --- SECCIÓN INICIO --- */
+.setinicio {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=1265&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+      center/cover;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin: 0; /* 🔹 Elimina espacio accidental arriba o abajo */
+}
+
+/* TÍTULOS Y PÁRRAFOS */
+.setinicio h2 {
+  font-size: 40px;
+  margin: 0 0 16px 0;
+}
+
+.inicio p {
+  font-size: 24px;
+  margin-bottom: 32px;
+}
+
+/* BOTÓN */
+/* --- BOTÓN PRINCIPAL "NAVEGAR POR LA TIENDA" --- */
+.botoninicio {
+  position: relative;
+  background: linear-gradient(90deg, #00bfff, #007bff);
+  color: #fff;
+  padding: 18px 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* EFECTO AL PASAR EL MOUSE */
+.botoninicio:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.7);
+}
+
+/* EFECTO DE BRILLO ANIMADO */
+.botoninicio::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75px;
+  width: 50px;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+  transform: skewX(-20deg);
+  transition: 0.5s;
+}
+
+.botoninicio:hover::before {
+  left: 125%;
+}
+
+/* EFECTO DE COLOR INVERSO AL CLIC */
+.botoninicio:active {
+  background: #fff;
+  color: #0a0a23;
+  box-shadow: inset 0 0 8px #00bfff;
+}
+
+/* --- SECCIÓN PRODUCTOS --- */
+.productos {
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.contenedor-productos h2 {
+  color: #0a0a23;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.contenedor-productos p {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+}
+/* --- SECCIÓN DE CATEGORÍAS --- */
+.categorias {
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.categorias h2 {
+  color: #0a0a23;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.categorias p {
+  color: #333;
+  font-size: 1.2rem;
+  margin-bottom: 60px;
+}
+
+/* --- TARJETAS --- */
+.contenedor-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 2 o 4 según espacio */
+  gap: 30px;
+  justify-items: center;
+}
+
+.tarjeta {
+  background-color: #0a0a23;
+  color: white;
+  border: 2px solid #00bfff;
+  border-radius: 12px;
+  padding: 40px 20px;
+  width: 260px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tarjeta:hover {
+  transform: translateY(-8px);
+  background-color: #00bfff;
+  color: #0a0a23;
+  box-shadow: 0 8px 15px rgba(0, 191, 255, 0.4);
+}
+
+.tarjeta h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.tarjeta p {
+  font-size: 1rem;
+  color: #ddd;
+}
+
+/* --- CAMBIO DE COLOR AL HOVER (texto) --- */
+.tarjeta:hover p {
+  color: #0a0a23;
+}
+/* --- SECCIÓN PROMOCIÓN --- */
+.promocion {
+  width: 100%;  /* 🔹 ocupa todo el ancho */
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url("https://images.unsplash.com/photo-1581092334394-15a9d3f063f9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0") center/cover;
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;  /* centra horizontalmente */
+  align-items: center;       /* centra verticalmente */
+  text-align: center;
+  color: white;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* --- TARJETA DE PROMO --- */
+.promo-card {
+  background-color: rgba(10, 10, 35, 0.8); /* fondo semi-transparente que combina con el header */
+  border: 2px solid #00bfff;
+  border-radius: 12px;
+  padding: 50px;
+  max-width: 800px; /* limita el ancho para que se vea centrado */
+  box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.promo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.4);
+}
+
+/* --- TÍTULO Y TEXTO --- */
+.promo-card h3 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #00bfff;
+  letter-spacing: 1px;
+}
+
+.promo-card p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #ddd;
+}
+
+/* --- BOTÓN --- */
+.botonpromo {
+  background-color: #00bfff;
+  color: #0a0a23;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3);
+}
+
+.botonpromo:hover {
+  background-color: #0a0a23;
+  color: #00bfff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 191, 255, 0.4);
+}
+/* --- SECCIÓN DE PRODUCTOS --- */
+.menu-section {
+  background-color: #f4f4f4;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #0a0a23;
+  margin-bottom: 20px;
+  border-bottom: 4px solid #00bfff;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+/* --- GRID DE PRODUCTOS --- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+/* --- TARJETA DE PRODUCTO --- */
+.menu-card {
+  background-color: white;
+  border: 2px solid #00bfff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 191, 255, 0.3);
+}
+
+/* --- IMAGEN DEL PRODUCTO --- */
+.menu-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 2px solid #00bfff;
+}
+
+/* --- CONTENIDO DE LA TARJETA --- */
+.card-content {
+  padding: 20px;
+}
+
+.titulo-comoda {
+  font-size: 1.3rem;
+  color: #0a0a23;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.descriccion {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.price {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #00bfff;
+  margin-bottom: 15px;
+}
+
+/* --- BOTÓN DE COMPRA --- */
+.ordenboton {
+  background-color: #0a0a23;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ordenboton:hover {
+  background-color: #00bfff;
+  color: #0a0a23;
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 191, 255, 0.4);
+}
+/* === ESTILOS DEL FOOTER === */
+/* === FOOTER GENERAL === */
+.footer {
+  background-color: #0a0a23; /* tono oscuro como el header */
+  color: #f1f1f1;
+  padding: 60px 20px 20px;
+  font-family: 'Lucida Sans', Arial, sans-serif;
+  border-top: 4px solid #00bfff;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+  min-width: 220px;
+}
+
+.footer-section h3 {
+  color: #00bfff;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #00bfff;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.footer-section p,
+.footer-section a {
+  color: #dcdcdc;
+  font-size: 0.95rem;
+  text-decoration: none;
+  line-height: 1.6;
+}
+
+.footer-section a:hover {
+  color: #00bfff;
+  text-decoration: underline;
+}
+
+.footer-section ul {
+  padding: 0;
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+/* === REDES SOCIALES === */
+.social-icons {
+  display: flex;
+  flex-direction: column; /* íconos uno debajo del otro con texto */
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #dcdcdc;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.social-item i {
+  font-size: 1.4rem;
+  width: 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* EFECTOS DE COLORES POR RED */
+.social-item:hover {
+  transform: translateX(5px);
+}
+
+.social-item:hover i.fa-facebook {
+  color: #1877f2; /* azul facebook */
+}
+
+.social-item:hover i.fa-instagram {
+  color: #e1306c; /* rosa instagram */
+}
+
+.social-item:hover i.fa-square-twitter {
+  color: #1da1f2; /* azul twitter */
+}
+
+.social-item:hover i.fa-tiktok {
+  color: #69c9d0; /* celeste tiktok */
+}
+
+/* === PARTE INFERIOR === */
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+  margin-top: 40px;
+}
+
+.footer-bottom p {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+/* === RESPONSIVE === */
+
+/* 🔹 Corrección global: evita movimiento lateral */
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Evita el scroll horizontal */
+}
+
+/* === TABLETS (pantallas menores a 992px) === */
+@media (max-width: 992px) {
+  /* --- ENCABEZADO --- */
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 15px;
+    height: auto;
+    text-align: center;
+  }
+
+  .logo h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #00bfff;
+  }
+
+  /* Menú horizontal debajo del título */
+  .encabezado ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .encabezado li {
+    list-style: none;
+  }
+
+  .encabezado a {
+    font-size: 1rem;
+    padding: 5px 10px;
+  }
+
+  /* --- SECCIÓN INICIO --- */
+  .setinicio {
+    height: auto;
+    padding: 80px 20px;
+  }
+
+  .setinicio h2 {
+    font-size: 32px;
+  }
+
+  .inicio p {
+    font-size: 18px;
+  }
+
+  /* --- PRODUCTOS Y PROMOCIONES --- */
+  .menu-grid, .promo-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+  }
+
+  /* --- FOOTER --- */
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* === CELULARES (pantallas menores a 768px) === */
+@media (max-width: 768px) {
+  /* --- ENCABEZADO --- */
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    text-align: center;
+  }
+
+  .logo h1 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  /* Menú en horizontal de lado a lado */
+  .encabezado ul {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto; /* Permite adaptarse si hay muchos botones */
+    gap: 10px;
+    padding: 5px 10px;
+  }
+
+  .encabezado a {
+    font-size: 0.95rem;
+    flex: 1; /* Ocupa ancho uniforme */
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* --- SECCIÓN INICIO --- */
+  .setinicio {
+    padding: 60px 15px;
+    background-position: center;
+  }
+
+  .setinicio h2 {
+    font-size: 26px;
+  }
+
+  .inicio p {
+    font-size: 16px;
+  }
+
+  .botoninicio {
+    width: 90%;
+    max-width: 250px;
+    font-size: 1rem;
+  }
+
+  /* --- PRODUCTOS --- */
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* --- FOOTER --- */
+  .footer {
+    padding: 40px 15px;
+  }
+
+  .footer-container {
+    gap: 25px;
+  }
+
+  .footer-section h3 {
+    font-size: 1.1rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.85rem;
+  }
+}
