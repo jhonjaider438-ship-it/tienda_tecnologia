@@ -664,3 +664,29 @@ html, body {
     font-size: 0.85rem;
   }
 }
+/* === CENTRAR ÍCONOS DE REDES SOCIALES EN RESPONSIVE === */
+@media (max-width: 768px) {
+  .social-icons {
+    flex-direction: row;       /* Los íconos uno al lado del otro */
+    justify-content: center;   /* Centra los íconos horizontalmente */
+    align-items: center;       /* Centra verticalmente */
+    flex-wrap: wrap;           /* Permite que salten de línea si hay muchos */
+    gap: 20px;                 /* Espaciado entre cada ícono */
+    text-align: center;
+  }
+
+  .social-item {
+    flex-direction: column;    /* Ícono arriba, texto abajo */
+    align-items: center;
+    text-align: center;
+  }
+
+  .social-item i {
+    font-size: 1.6rem;
+  }
+
+  .social-item span {
+    font-size: 0.9rem;
+    color: #dcdcdc;
+  }
+}
